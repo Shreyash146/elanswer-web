@@ -6,16 +6,16 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navItems = [{
-    name: 'Features',
+    name: 'Services',
     active: true
   }, {
     name: 'Pricing',
     active: false
   }, {
-    name: 'Blog',
+    name: 'Case Studies',
     active: false
   }, {
-    name: 'About Us',
+    name: 'About',
     active: false
   }, {
     name: 'Contact',
@@ -31,7 +31,7 @@ const Navbar = () => {
         {/* Logo and Brand */}
         <div className="flex items-center gap-7">
           <div className="flex items-center gap-3">
-            <h1 className="text-white text-lg font-semibold leading-7 font-sans">Webfluin</h1>
+            <h1 className="text-white text-lg font-semibold leading-7 font-sans">elanswer.com</h1>
           </div>
           
           {/* Vertical Divider - Hidden on mobile */}
@@ -52,7 +52,7 @@ const Navbar = () => {
           <Button className="px-4 py-2.5 text-sm font-semibold leading-5 text-white rounded-xl border border-white/32 font-sans" style={{
             background: 'linear-gradient(180deg, #6445F5 0%, #4128BA 100%)'
           }}>
-            Get Started
+            Book Demo
           </Button>
         </div>
 
@@ -76,7 +76,7 @@ const Navbar = () => {
                   <Button className="w-full px-4 py-3 text-sm font-semibold text-white rounded-xl border border-white/32" style={{
                     background: 'linear-gradient(180deg, #6445F5 0%, #4128BA 100%)'
                   }} onClick={() => setIsOpen(false)}>
-                    Get Started
+                    Book Demo
                   </Button>
                 </div>
               </div>

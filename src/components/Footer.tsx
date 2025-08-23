@@ -7,42 +7,37 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="w-full lg:w-96 flex flex-col justify-start items-start gap-8">
             <div className="flex justify-start items-center gap-1.5">
-              <div className="text-gray-100 text-xl font-semibold leading-[30px] font-sans">Webfluin</div>
-              <div className="px-1 py-1.5 bg-transparent rounded border-2 border-indigo-400 flex justify-center items-center">
-                <div className="text-indigo-600 text-xs font-bold leading-[10px] font-sans">LAND</div>
+              <div className="text-gray-100 text-xl font-semibold leading-[30px] font-sans">elanswer.com</div>
+              <div className="px-1 py-1.5 bg-transparent rounded border-2 border-green-400 flex justify-center items-center">
+                <div className="text-green-400 text-xs font-bold leading-[10px] font-sans">AI</div>
               </div>
             </div>
             <div className="text-gray-300 text-base font-normal leading-6 font-sans">
-              Redefining possibilities and driving progress through technology and creativity.
+              AI automation solutions for small businesses. Save time, grow faster with intelligent agents.
             </div>
           </div>
 
           {/* Links Grid */}
           <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-8">
-            {/* Products Column */}
+            {/* Services Column */}
             <div className="flex flex-col justify-start items-start gap-6">
               <div className="flex flex-col justify-start items-start gap-4">
-                <div className="text-gray-400 text-base font-medium leading-6 font-sans">Products</div>
+                <div className="text-gray-400 text-base font-medium leading-6 font-sans">Services</div>
                 <div className="flex flex-col gap-4">
                   <div className="text-gray-100 text-base font-medium leading-6 font-sans cursor-pointer hover:text-gray-300 transition-colors">
-                    Sitesprint
-                  </div>
-                  <div className="flex justify-start items-center gap-2">
-                    <div className="text-gray-100 text-base font-medium leading-6 font-sans cursor-pointer hover:text-gray-300 transition-colors">
-                      Boardly
-                    </div>
-                    <Badge className="bg-green-800 text-green-200 border-green-600 text-xs">
-                      Badge
-                    </Badge>
+                    AI Chatbots
                   </div>
                   <div className="text-gray-100 text-base font-medium leading-6 font-sans cursor-pointer hover:text-gray-300 transition-colors">
-                    Vistadash
+                    Voice Agents
                   </div>
                   <div className="text-gray-100 text-base font-medium leading-6 font-sans cursor-pointer hover:text-gray-300 transition-colors">
-                    Lumina
+                    Workflow Automation
                   </div>
                   <div className="text-gray-100 text-base font-medium leading-6 font-sans cursor-pointer hover:text-gray-300 transition-colors">
-                    Spectra
+                    Custom Integrations
+                  </div>
+                  <div className="text-gray-100 text-base font-medium leading-6 font-sans cursor-pointer hover:text-gray-300 transition-colors">
+                    Analytics & Reporting
                   </div>
                 </div>
               </div>
@@ -53,20 +48,20 @@ const Footer = () => {
               <div className="flex flex-col justify-start items-start gap-4">
                 <div className="text-gray-400 text-base font-medium leading-6 font-sans">Support</div>
                 <div className="flex flex-col gap-4">
-                  <div className="text-gray-100 text-base font-medium leading-6 font-sans cursor-pointer hover:text-gray-300 transition-colors">
+                  <a href="mailto:hello@elanswer.com" className="text-gray-100 text-base font-medium leading-6 font-sans cursor-pointer hover:text-gray-300 transition-colors">
                     Contact
+                  </a>
+                  <div className="text-gray-100 text-base font-medium leading-6 font-sans cursor-pointer hover:text-gray-300 transition-colors">
+                    Documentation
                   </div>
                   <div className="text-gray-100 text-base font-medium leading-6 font-sans cursor-pointer hover:text-gray-300 transition-colors">
-                    Community
+                    Setup Guide
                   </div>
                   <div className="text-gray-100 text-base font-medium leading-6 font-sans cursor-pointer hover:text-gray-300 transition-colors">
-                    Live chat
+                    FAQs
                   </div>
                   <div className="text-gray-100 text-base font-medium leading-6 font-sans cursor-pointer hover:text-gray-300 transition-colors">
-                    Guides
-                  </div>
-                  <div className="text-gray-100 text-base font-medium leading-6 font-sans cursor-pointer hover:text-gray-300 transition-colors">
-                    Feedback
+                    Schedule Demo
                   </div>
                 </div>
               </div>
@@ -81,16 +76,16 @@ const Footer = () => {
                     About
                   </div>
                   <div className="text-gray-100 text-base font-medium leading-6 font-sans cursor-pointer hover:text-gray-300 transition-colors">
-                    Careers
+                    Case Studies
                   </div>
-                  <div className="text-gray-100 text-base font-medium leading-6 font-sans cursor-pointer hover:text-gray-300 transition-colors">
-                    Partnerships
-                  </div>
+                  <a href="https://linkedin.com/company/elanswer" target="_blank" rel="noopener noreferrer" className="text-gray-100 text-base font-medium leading-6 font-sans cursor-pointer hover:text-gray-300 transition-colors">
+                    LinkedIn
+                  </a>
                   <div className="text-gray-100 text-base font-medium leading-6 font-sans cursor-pointer hover:text-gray-300 transition-colors">
                     Blog
                   </div>
                   <div className="text-gray-100 text-base font-medium leading-6 font-sans cursor-pointer hover:text-gray-300 transition-colors">
-                    Press
+                    Partners
                   </div>
                 </div>
               </div>

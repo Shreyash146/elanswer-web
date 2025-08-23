@@ -23,7 +23,7 @@ const HeroSection = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut"
+        ease: [0.6, -0.05, 0.01, 0.99] as const
       }
     }
   };
@@ -37,7 +37,7 @@ const HeroSection = () => {
       transition: {
         duration: 0.8,
         delay: 0.6,
-        ease: "easeOut"
+        ease: [0.6, -0.05, 0.01, 0.99] as const
       }
     }
   };
@@ -77,13 +77,13 @@ const HeroSection = () => {
                 className="w-full text-center text-white text-3xl md:text-5xl lg:text-6xl font-normal leading-tight md:leading-none break-words font-sans"
                 variants={itemVariants}
               >
-                Enhance your financial<br />control with Webfluin
+                AI Automations for SMBs<br />Save Time. Grow Faster.
               </motion.h1>
               <motion.p 
                 className="w-full text-center text-white text-base md:text-lg font-normal leading-relaxed break-words font-sans"
                 variants={itemVariants}
               >
-                Streamline your business's financial management with our intuitive, scalable SaaS platform. Designed for U.S. enterprises.
+                Practical AI agents built fast, no dev team needed. Automate customer service, sales, and operations for small businesses.
               </motion.p>
             </motion.div>
             
@@ -93,10 +93,10 @@ const HeroSection = () => {
               variants={itemVariants}
             >
               <Button className="px-6 py-3 bg-white text-black rounded-full border border-white hover:bg-gray-100 transition-colors font-normal text-base leading-6 font-sans">
-                Get started
+                Book a Free Demo
               </Button>
               <Button variant="outline" className="px-6 py-3 bg-transparent text-white rounded-full border border-white hover:bg-white hover:text-black transition-colors font-normal text-base leading-6 font-sans">
-                Contact
+                Learn More
               </Button>
             </motion.div>
           </motion.div>
