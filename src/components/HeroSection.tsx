@@ -3,7 +3,6 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import Navbar from './Navbar';
-import aiDashboardHero from '@/assets/ai-dashboard-hero.jpg';
 
 const HeroSection = () => {
   const containerVariants = {
@@ -121,8 +120,8 @@ const HeroSection = () => {
                     {/* Dashboard image */}
                     <div className="absolute inset-0 flex items-center justify-center shadow-[0_0_45px_0_rgba(118,77,253,0.77)]">
                       <img 
-                        src={aiDashboardHero} 
-                        alt="AI Automation Dashboard" 
+                        src="/lovable-uploads/13161c05-4e61-4eec-9034-00e6fcdaead7.png" 
+                        alt="Dashboard Preview" 
                         className="w-full h-full object-cover rounded-lg"
                       />
                     </div>
