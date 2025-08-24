@@ -4,6 +4,7 @@ import CompanyLogos from '@/components/CompanyLogos';
 import NicheHighlightsSection from '@/components/NicheHighlightsSection';
 import ServicePackagesSection from '@/components/ServicePackagesSection';
 import UseCaseExamplesSection from '@/components/UseCaseExamplesSection';
+import IntegrationsSection from '@/components/IntegrationsSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import LeadCaptureSection from '@/components/LeadCaptureSection';
 import Footer from '@/components/Footer';
@@ -16,6 +17,7 @@ const Index = () => {
       <NicheHighlightsSection />
       <ServicePackagesSection />
       <UseCaseExamplesSection />
+      <IntegrationsSection />
       <TestimonialsSection />
       <LeadCaptureSection />
       <Footer />
