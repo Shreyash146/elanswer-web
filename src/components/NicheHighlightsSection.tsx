@@ -1,8 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Stethoscope, ShoppingCart, Calendar } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import GetStartedModal from './GetStartedModal';
+import { useGetStartedModal } from '@/hooks/useGetStartedModal';
 
 const NicheHighlightsSection = () => {
+  const { isOpen, openModal, closeModal } = useGetStartedModal();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -41,19 +46,19 @@ const NicheHighlightsSection = () => {
     {
       icon: Stethoscope,
       title: "AI Front Desk for Clinics",
-      description: "Automate appointment booking, patient inquiries, and follow-up calls. Reduce admin work by 80% while improving patient experience.",
+      description: "Automate appointment booking, patient inquiries, and follow-ups. Cut admin work by 80% and improve patient care.",
       gradient: "from-blue-500 to-blue-600"
     },
     {
       icon: ShoppingCart,
-      title: "Abandoned Cart Agent for E-commerce",
-      description: "Intelligent recovery sequences that adapt to customer behavior. Recover 30-40% of abandoned carts with personalized messaging.",
+      title: "E-commerce Cart Recovery Agent",
+      description: "Bring back lost sales with smart recovery sequences. Recover 30–40% of abandoned carts through personalized AI outreach.",
       gradient: "from-green-500 to-green-600"
     },
     {
       icon: Calendar,
-      title: "Reservation & Review Automation for Restaurants",
-      description: "Handle reservations, send reminders, and request reviews automatically. Increase bookings by 25% and improve online reputation.",
+      title: "Restaurant Reservations & Reviews",
+      description: "Fill more tables with automated booking, reminders, and review requests. Increase reservations by 25% while boosting online reputation.",
       gradient: "from-purple-500 to-purple-600"
     }
   ];
@@ -75,10 +80,10 @@ const NicheHighlightsSection = () => {
           </motion.div>
           <motion.div className="self-stretch flex flex-col justify-start items-center gap-6" variants={itemVariants}>
             <motion.div className="self-stretch text-center text-white text-4xl md:text-6xl font-normal leading-tight md:leading-[67.20px] font-sans" variants={itemVariants}>
-              AI Solutions for Every Industry
+              AI Agents Tailored for Your Industry
             </motion.div>
             <motion.div className="self-stretch text-center text-white text-base md:text-lg font-normal leading-6 md:leading-7 font-sans" variants={itemVariants}>
-              Specialized automation that understands your business needs
+              From healthcare to e-commerce to restaurants — we build automations that save time, boost revenue, and improve customer experiences.
             </motion.div>
           </motion.div>
         </motion.div>
@@ -108,7 +113,40 @@ const NicheHighlightsSection = () => {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* CTA Section */}
+        <motion.div
+          className="w-full max-w-[600px] flex flex-col justify-start items-center gap-6 md:gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <motion.div className="flex flex-col justify-start items-center gap-4" variants={itemVariants}>
+            <motion.div
+              className="text-center text-white text-2xl md:text-3xl font-semibold leading-tight font-sans"
+              variants={itemVariants}
+            >
+              Find the Right AI Agent for Your Business
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            className="flex justify-center items-center"
+            variants={itemVariants}
+          >
+            <Button
+              onClick={openModal}
+              className="px-6 py-3 bg-white text-black rounded-full border border-white hover:bg-gray-100 transition-colors font-normal text-base leading-6 font-sans"
+            >
+              Get Started
+            </Button>
+          </motion.div>
+        </motion.div>
       </div>
+
+      {/* Get Started Modal */}
+      <GetStartedModal isOpen={isOpen} onClose={closeModal} />
     </div>
   );
 };

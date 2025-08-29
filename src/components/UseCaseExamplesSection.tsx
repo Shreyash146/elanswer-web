@@ -28,21 +28,23 @@ const UseCaseExamplesSection = () => {
   const caseStudies = [
     {
       icon: TrendingUp,
-      title: "Boutique Store: $1,200/mo Revenue Recovery",
-      description: "Our abandoned cart AI agent helped a local boutique recover 35% of lost sales through personalized follow-up sequences and smart discount timing.",
+      title: "Boutique Store: $1,200/Month Recovered",
+      before: "The boutique was losing sales due to missed follow-ups with online shoppers.",
+      after: "Our AI follow-up system automatically re-engaged abandoned carts, recovering $1,200 in revenue every month and increasing repeat purchases.",
       metrics: [
-        { label: "Cart Recovery Rate", value: "35%" },
-        { label: "Monthly Revenue Increase", value: "$1,200" },
-        { label: "Setup Time", value: "2 weeks" }
+        { label: "Revenue Recovered", value: "$1,200/month" },
+        { label: "Repeat Purchases", value: "+18%" },
+        { label: "Customer Retention", value: "+22%" }
       ],
       gradient: "from-green-500 to-green-600"
     },
     {
       icon: Users,
       title: "Dental Clinic: 40 Hours/Week Saved",
-      description: "Automated appointment booking and patient follow-ups freed up front desk staff to focus on patient care instead of administrative tasks.",
+      before: "Staff spent over 40 hours weekly managing phone calls and appointment reminders.",
+      after: "Our AI booking agent automated scheduling and follow-ups, reducing missed appointments by 60% and freeing staff time for patient care.",
       metrics: [
-        { label: "Admin Time Saved", value: "40 hrs/week" },
+        { label: "Time Saved", value: "40 hrs/week" },
         { label: "Missed Appointments", value: "-60%" },
         { label: "Patient Satisfaction", value: "+25%" }
       ],
@@ -51,11 +53,12 @@ const UseCaseExamplesSection = () => {
     {
       icon: Clock,
       title: "Restaurant: 25% More Bookings",
-      description: "Smart reservation management and automated review requests increased table bookings and improved online reputation for a family restaurant.",
+      before: "The restaurant faced frequent no-shows and underutilized tables.",
+      after: "Our AI reservation system optimized table allocation and automated confirmations, boosting bookings by 25% and cutting no-shows nearly in half.",
       metrics: [
-        { label: "Booking Increase", value: "25%" },
-        { label: "Review Response Rate", value: "85%" },
-        { label: "Staff Hours Saved", value: "15/week" }
+        { label: "Bookings Increase", value: "+25%" },
+        { label: "No-Show Reduction", value: "-45%" },
+        { label: "Average Revenue per Table", value: "+15%" }
       ],
       gradient: "from-purple-500 to-purple-600"
     }
@@ -107,12 +110,25 @@ const UseCaseExamplesSection = () => {
                 <study.icon className="w-8 h-8 text-white" />
               </div>
               
-              <div className="text-white text-xl md:text-2xl font-semibold leading-tight mb-4 font-sans">
+              <div className="text-white text-xl md:text-2xl font-semibold leading-tight mb-6 font-sans">
                 {study.title}
               </div>
-              
-              <div className="text-gray-300 text-sm md:text-base font-normal leading-6 mb-6 font-sans">
-                {study.description}
+
+              {/* Before/After Section */}
+              <div className="flex flex-col gap-4 mb-6">
+                <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4">
+                  <div className="text-red-400 text-xs font-semibold mb-2 uppercase tracking-wide">Before</div>
+                  <div className="text-gray-300 text-sm font-normal leading-5 font-sans">
+                    {study.before}
+                  </div>
+                </div>
+
+                <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-4">
+                  <div className="text-green-400 text-xs font-semibold mb-2 uppercase tracking-wide">After</div>
+                  <div className="text-gray-300 text-sm font-normal leading-5 font-sans">
+                    {study.after}
+                  </div>
+                </div>
               </div>
               
               <div className="grid grid-cols-1 gap-4">

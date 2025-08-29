@@ -2,9 +2,12 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
-import Navbar from './Navbar';
+import NavbarWithModal from './NavbarWithModal';
+import { useCalBooking } from '@/hooks/useCalBooking';
 
 const HeroSection = () => {
+  const { isCalLoaded } = useCalBooking();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -44,29 +47,39 @@ const HeroSection = () => {
 
   return (
     <div className="w-full min-h-screen overflow-hidden flex flex-col justify-start items-start relative" style={{
-      backgroundImage: 'url(/lovable-uploads/5c21d57e-d7fa-44a5-a13e-d85e12b669bf.png)',
+      backgroundImage: 'url(/lovable-uploads/5c21d57e-d7fa-44a5-a13e-d85e12b669bf.webp)',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat'
     }}>
-      {/* Background Video Layer */}
-      <video 
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ mixBlendMode: 'color-dodge' }}
+      {/* Background Video Layer - Covering Entire Hero Section */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        style={{ opacity: 0.4 }}
         autoPlay
         muted
         loop
         playsInline
         controls={false}
+        preload="auto"
       >
         <source src="https://res.cloudinary.com/dqd4dvem7/video/upload/v1753689005/pulse_mlmvay.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
       </video>
-      <Navbar />
-      
-      <div className="w-full px-4 md:px-16 lg:px-16 xl:px-16 py-14 md:py-28 overflow-hidden flex flex-col justify-start items-center gap-10 md:gap-20">
+
+      {/* Dark overlay for entire section */}
+      <div className="absolute inset-0 bg-black bg-opacity-30 z-[1]"></div>
+
+      {/* Navbar - positioned above video */}
+      <div className="relative z-50 w-full">
+        <NavbarWithModal />
+      </div>
+
+      {/* Main Content - positioned above video */}
+      <div className="relative z-10 w-full px-4 md:px-16 lg:px-16 xl:px-16 py-14 md:py-28 overflow-hidden flex flex-col justify-start items-center gap-10 md:gap-20">
         <div className="w-full max-w-7xl flex flex-col justify-start items-center gap-10 md:gap-20">
           {/* Header Content */}
-          <motion.div 
+          <motion.div
             className="w-full max-w-3xl pt-8 md:pt-14 flex flex-col justify-start items-center gap-6 md:gap-8 py-[65px]"
             variants={containerVariants}
             initial="hidden"
@@ -87,17 +100,33 @@ const HeroSection = () => {
               </motion.p>
             </motion.div>
             
-            {/* CTA Buttons */}
-            <motion.div 
-              className="flex flex-col sm:flex-row justify-start items-center gap-4"
+            {/* Enhanced CTA Buttons */}
+            <motion.div
+              className="flex flex-col sm:flex-row justify-start items-center gap-4 md:gap-6"
               variants={itemVariants}
             >
-              <Button className="px-6 py-3 bg-white text-black rounded-full border border-white hover:bg-gray-100 transition-colors font-normal text-base leading-6 font-sans">
-                Book a Free Demo
-              </Button>
-              <Button variant="outline" className="px-6 py-3 bg-transparent text-white rounded-full border border-white hover:bg-white hover:text-black transition-colors font-normal text-base leading-6 font-sans">
-                Learn More
-              </Button>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button
+                  data-cal-namespace="discovery-call"
+                  data-cal-link="elanswer-ai-automation/discovery-call"
+                  data-cal-config='{"layout":"month_view"}'
+                  className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-full border-2 border-blue-400/30 hover:border-blue-400/50 font-semibold text-lg leading-6 font-sans shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  Book a Free Demo
+                </Button>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button variant="outline" className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-full border-2 border-white/30 hover:bg-white/20 hover:border-white/50 font-semibold text-lg leading-6 font-sans shadow-lg hover:shadow-xl transition-all duration-300">
+                  Learn More
+                </Button>
+              </motion.div>
             </motion.div>
           </motion.div>
           
@@ -119,10 +148,11 @@ const HeroSection = () => {
                   <div className="w-full h-full relative">
                     {/* Dashboard image */}
                     <div className="absolute inset-0 flex items-center justify-center shadow-[0_0_45px_0_rgba(118,77,253,0.77)]">
-                      <img 
-                        src="/lovable-uploads/13161c05-4e61-4eec-9034-00e6fcdaead7.png" 
-                        alt="Dashboard Preview" 
+                      <img
+                        src="/lovable-uploads/13161c05-4e61-4eec-9034-00e6fcdaead7.webp"
+                        alt="Elanswer AI automation dashboard showing analytics, workflow management, and customer interaction metrics for business automation solutions"
                         className="w-full h-full object-cover rounded-lg"
+                        loading="lazy"
                       />
                     </div>
                   </div>
@@ -137,6 +167,8 @@ const HeroSection = () => {
           </motion.div>
         </div>
       </div>
+
+
     </div>
   );
 };

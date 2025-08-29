@@ -1,8 +1,11 @@
 import React from 'react';
 import { Star } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useCalBooking } from '@/hooks/useCalBooking';
 
 const TestimonialsSection = () => {
+  const { isCalLoaded } = useCalBooking();
+
   const testimonials = [
     {
       text: "Our AI chatbot handles 80% of customer inquiries automatically. It's freed up our team to focus on complex sales opportunities.",
@@ -71,8 +74,8 @@ const TestimonialsSection = () => {
             <div className="px-4 py-1.5 bg-black rounded-2xl border border-gray-600 flex justify-start items-center gap-3">
               <div className="text-gray-200 text-sm font-medium leading-5 font-sans">Testimonials</div>
             </div>
-            <div className="text-center text-white text-3xl md:text-5xl lg:text-[56px] font-normal leading-tight md:leading-[67.20px] font-sans">What our customers say</div>
-            <div className="opacity-80 text-center text-white text-base md:text-lg font-normal leading-6 md:leading-[27px] font-sans">Find out why our users choose us and how our product has made a difference in their journey. Your success story could be the next one we feature!</div>
+            <div className="text-center text-white text-3xl md:text-5xl lg:text-[56px] font-normal leading-tight md:leading-[67.20px] font-sans">Why businesses love working with us</div>
+            <div className="opacity-80 text-center text-white text-base md:text-lg font-normal leading-6 md:leading-[27px] font-sans">From smoother operations to happier customers — discover how our product makes a real difference.</div>
           </div>
           
           <div className="relative w-full h-[600px] overflow-hidden">
@@ -153,7 +156,34 @@ const TestimonialsSection = () => {
             </div>
           </div>
         </div>
+
+        {/* Simple CTA - Text and Button in One Line */}
+        <motion.div
+          className="w-full max-w-[800px] mt-16 md:mt-20 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+            <div className="text-white text-xl md:text-2xl font-semibold leading-tight font-sans">
+              Ready to write your own success story? Book a free consultation today.
+            </div>
+            <motion.button
+              data-cal-namespace="discovery-call"
+              data-cal-link="elanswer-ai-automation/discovery-call"
+              data-cal-config='{"layout":"month_view"}'
+              className="px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-full font-semibold text-base leading-6 font-sans transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Book Free Consultation
+            </motion.button>
+          </div>
+        </motion.div>
       </div>
+
+
     </div>
   );
 };
@@ -169,10 +199,11 @@ const TestimonialCard = ({ testimonial }: { testimonial: any }) => {
         </div>
         <p className="text-gray-200 text-base font-normal leading-6">{testimonial.text}</p>
         <div className="flex items-center gap-3">
-          <img 
-            src={testimonial.avatar} 
-            alt={testimonial.name}
+          <img
+            src={testimonial.avatar}
+            alt={`${testimonial.name}, ${testimonial.role} - Customer testimonial photo`}
             className="w-12 h-12 rounded-full object-cover"
+            loading="lazy"
           />
           <div className="flex flex-col">
             <div className="text-white text-sm font-semibold leading-5">{testimonial.name}</div>

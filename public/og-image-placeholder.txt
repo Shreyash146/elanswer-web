@@ -1,0 +1,31 @@
+IMPORTANT: Create Open Graph Image
+
+You need to create an actual Open Graph image file at: public/og-image.png
+
+Requirements:
+- Dimensions: 1200x630 pixels (exact)
+- Format: PNG or JPG
+- File size: Under 1MB
+- Content: Elanswer branding + key messaging
+
+Recommended content:
+- Elanswer logo
+- Tagline: "AI Automation & Workflow Solutions for Businesses"
+- Background: Professional gradient or brand colors
+- Optional: Icons representing AI, automation, or business growth
+
+Tools you can use:
+- Canva (canva.com) - Has Open Graph templates
+- Figma (figma.com) - Professional design tool
+- Adobe Photoshop/Illustrator
+- Online OG image generators
+
+Once created, place the file at: public/og-image.png
+
+This image will appear when your website is shared on:
+- Facebook
+- Twitter
+- LinkedIn
+- WhatsApp
+- Slack
+- And other social platforms
