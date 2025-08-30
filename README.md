@@ -285,7 +285,7 @@ This project is proprietary software developed for Elanswer. All rights reserved
 
 ### **Business Inquiries**
 - **Website**: [elanswer.com](https://elanswer.com)
-- **Email**: contact@elanswer.com
+- **Email**: business@elanswer.com
 - **LinkedIn**: [Elanswer Company Page](https://linkedin.com/company/elanswer)
 
 ### **Technical Support**
