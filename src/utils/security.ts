@@ -168,11 +168,13 @@ export class SecurityMonitor {
   }
 
   private async reportViolation(violation: any): Promise<void> {
-    // Only report violations in production environment
-    if (process.env.NODE_ENV !== 'production') {
-      return;
-    }
+    // Disable security API reporting entirely for now
+    // TODO: Implement proper security monitoring service
+    console.debug('Security violation logged:', violation.type);
+    return;
 
+    // Original code commented out until proper API is implemented
+    /*
     try {
       // Send to your security monitoring service
       await fetch('/api/security/violations', {
@@ -183,13 +185,9 @@ export class SecurityMonitor {
         body: JSON.stringify(violation)
       });
     } catch (error) {
-      // Silently fail in development to avoid console spam
-      if (process.env.NODE_ENV === 'development') {
-        console.debug('Security API not available in development');
-      } else {
-        console.warn('Failed to report security violation:', error);
-      }
+      console.debug('Security API not available');
     }
+    */
   }
 
   getViolations(): typeof this.violations {

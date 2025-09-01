@@ -17,7 +17,17 @@ window.addEventListener('error', (event) => {
     event.filename.includes('extension://') ||
     event.filename.includes('content.js') ||
     event.filename.includes('chrome-extension://') ||
-    event.filename.includes('moz-extension://')
+    event.filename.includes('moz-extension://') ||
+    event.filename.includes('index.js')
+  )) {
+    event.preventDefault();
+    return false;
+  }
+
+  // Suppress specific extension error messages
+  if (event.message && (
+    event.message.includes('Target website not loaded') ||
+    event.message.includes('Extension context invalidated')
   )) {
     event.preventDefault();
     return false;
@@ -28,6 +38,36 @@ window.addEventListener('error', (event) => {
 window.addEventListener('unhandledrejection', (event) => {
   // Log for debugging but don't crash the app
   console.warn('Unhandled promise rejection:', event.reason);
+});
+
+// CSS loading fallback
+document.addEventListener('DOMContentLoaded', () => {
+  // Check if CSS is loaded properly
+  const testElement = document.createElement('div');
+  testElement.style.display = 'none';
+  testElement.className = 'bg-black text-white'; // Tailwind classes
+  document.body.appendChild(testElement);
+
+  const computedStyle = window.getComputedStyle(testElement);
+  const hasStyles = computedStyle.backgroundColor !== 'rgba(0, 0, 0, 0)' &&
+                   computedStyle.backgroundColor !== 'transparent';
+
+  if (!hasStyles) {
+    console.warn('CSS may not have loaded properly, attempting fallback');
+    // Force reload CSS if needed
+    const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
+    cssLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && href.includes('assets')) {
+        const newLink = document.createElement('link');
+        newLink.rel = 'stylesheet';
+        newLink.href = href + '?v=' + Date.now();
+        document.head.appendChild(newLink);
+      }
+    });
+  }
+
+  document.body.removeChild(testElement);
 });
 
 // Initialize performance monitoring

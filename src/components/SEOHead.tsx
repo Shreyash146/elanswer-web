@@ -80,6 +80,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="msapplication-TileColor" content="#4f46e5" />
       <meta name="application-name" content="Elanswer" />
       <meta name="apple-mobile-web-app-title" content="Elanswer" />
+      <meta name="mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       
