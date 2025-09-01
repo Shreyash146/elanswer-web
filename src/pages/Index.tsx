@@ -23,6 +23,7 @@ const Index = () => {
         description="Elanswer helps small & medium businesses automate workflows with AI agents, SaaS solutions, and custom automations. Save time, boost sales, and scale smarter."
         keywords="AI automation, workflow automation, AI chatbots, voice AI, business automation, SaaS solutions, customer service automation, small business AI, automated workflows"
         url="https://elanswer.com/"
+        canonical="https://elanswer.com/"
         image="https://elanswer.com/og-image.png"
       />
 

@@ -4,6 +4,7 @@ import { AlertTriangle, Info, ExternalLink, FileX, Copyright, Mail } from 'lucid
 import NavbarWithModal from '@/components/NavbarWithModal';
 import Footer from '@/components/Footer';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
+import SEOHead from '@/components/SEOHead';
 
 const Disclaimer = () => {
   const containerVariants = {
@@ -76,6 +77,16 @@ const Disclaimer = () => {
 
   return (
     <div className="min-h-screen bg-black">
+      {/* SEO Head */}
+      <SEOHead
+        title="Disclaimer - Elanswer AI Automation"
+        description="Read Elanswer's disclaimer regarding our AI automation services, including limitations, warranties, and liability information for our chatbot and workflow solutions."
+        keywords="elanswer disclaimer, AI automation disclaimer, service limitations, liability disclaimer"
+        url="https://elanswer.com/disclaimer"
+        canonical="https://elanswer.com/disclaimer"
+        noIndex={false}
+      />
+
       {/* Navbar */}
       <div className="relative z-50">
         <NavbarWithModal />

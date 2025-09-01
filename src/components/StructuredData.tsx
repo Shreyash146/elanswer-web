@@ -41,12 +41,7 @@ const StructuredData: React.FC<StructuredDataProps> = ({ type, data }) => {
           "@type": "WebSite",
           "name": "Elanswer",
           "description": "Elanswer helps small & medium businesses automate workflows with AI agents, SaaS solutions, and custom automations.",
-          "url": "https://elanswer.com",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://elanswer.com/search?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-          }
+          "url": "https://elanswer.com"
         };
 
       case 'service':

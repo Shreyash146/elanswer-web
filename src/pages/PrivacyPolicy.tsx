@@ -100,7 +100,7 @@ const PrivacyPolicy = () => {
         keywords="elanswer privacy policy, data protection, AI automation privacy, personal information security"
         url="https://elanswer.com/privacy-policy"
         canonical="https://elanswer.com/privacy-policy"
-        noIndex={true}
+        noIndex={false}
       />
 
       {/* Navbar */}

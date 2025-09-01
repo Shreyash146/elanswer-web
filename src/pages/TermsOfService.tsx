@@ -152,7 +152,7 @@ const TermsOfService = () => {
         keywords="elanswer terms of service, AI automation terms, service agreement, chatbot terms"
         url="https://elanswer.com/terms-of-service"
         canonical="https://elanswer.com/terms-of-service"
-        noIndex={true}
+        noIndex={false}
       />
 
       {/* Navbar */}

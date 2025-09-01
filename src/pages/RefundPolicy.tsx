@@ -4,6 +4,7 @@ import { DollarSign, XCircle, CheckCircle, FileText, Calendar, Settings, Mail } 
 import NavbarWithModal from '@/components/NavbarWithModal';
 import Footer from '@/components/Footer';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
+import SEOHead from '@/components/SEOHead';
 
 const RefundPolicy = () => {
   const containerVariants = {
@@ -120,6 +121,16 @@ const RefundPolicy = () => {
 
   return (
     <div className="min-h-screen bg-black">
+      {/* SEO Head */}
+      <SEOHead
+        title="Refund Policy - Elanswer AI Automation"
+        description="Read Elanswer's refund policy for our AI automation services. Learn about our refund terms, conditions, and process for chatbots, voice AI, and workflow automation solutions."
+        keywords="elanswer refund policy, AI automation refund, service refund terms, chatbot refund policy"
+        url="https://elanswer.com/refund-policy"
+        canonical="https://elanswer.com/refund-policy"
+        noIndex={false}
+      />
+
       {/* Navbar */}
       <div className="relative z-50">
         <NavbarWithModal />
