@@ -10,6 +10,26 @@ import { vulnerabilityScanner } from './utils/vulnerabilityScanner'
 // Initialize error monitoring
 errorMonitoring.addBreadcrumb('Application started', 'lifecycle');
 
+// Global error handler for third-party scripts and extensions
+window.addEventListener('error', (event) => {
+  // Suppress errors from browser extensions and third-party scripts
+  if (event.filename && (
+    event.filename.includes('extension://') ||
+    event.filename.includes('content.js') ||
+    event.filename.includes('chrome-extension://') ||
+    event.filename.includes('moz-extension://')
+  )) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Handle unhandled promise rejections
+window.addEventListener('unhandledrejection', (event) => {
+  // Log for debugging but don't crash the app
+  console.warn('Unhandled promise rejection:', event.reason);
+});
+
 // Initialize performance monitoring
 performanceMonitoring.measurePageLoad();
 performanceMonitoring.measureCoreWebVitals();

@@ -59,6 +59,15 @@
           "value": "text/plain"
         }
       ]
+    },
+    {
+      "source": "/sitemap.xsl",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xslt+xml"
+        }
+      ]
     }
   ]
 }
