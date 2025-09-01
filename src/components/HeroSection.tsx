@@ -80,7 +80,7 @@ const HeroSection = () => {
         <div className="w-full max-w-7xl flex flex-col justify-start items-center gap-10 md:gap-20">
           {/* Header Content */}
           <motion.div
-            className="w-full max-w-3xl pt-8 md:pt-14 flex flex-col justify-start items-center gap-6 md:gap-8 py-[65px]"
+            className="w-full max-w-3xl pt-20 md:pt-14 flex flex-col justify-start items-center gap-6 md:gap-8 py-[65px]"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
