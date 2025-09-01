@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Calendar, ShoppingCart, Users, Database, FileText, MessageSquare, Phone } from 'lucide-react';
+import { Calendar, ShoppingCart, Users, Database, FileText, MessageSquare, Phone, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useCalBooking } from '@/hooks/useCalBooking';
 
 const CompanyLogos = () => {
   const { isCalLoaded } = useCalBooking();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   const capabilities = [
     {
@@ -54,6 +57,15 @@ const CompanyLogos = () => {
 
   // Double for seamless loop
   const doubleCapabilities = [...capabilities, ...capabilities];
+
+  // Navigation functions
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % capabilities.length);
+  };
+
+  const goToPrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + capabilities.length) % capabilities.length);
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -111,41 +123,94 @@ const CompanyLogos = () => {
           </motion.div>
         </motion.div>
 
-        {/* Carousel Section */}
-        <div className="w-full overflow-hidden">
-          <motion.div
-            className="flex gap-6 md:gap-8"
-            initial={{ x: '0%' }}
-            animate={{ x: '-50%' }}
-            transition={{
-              duration: 60,
-              ease: 'linear',
-              repeat: Infinity,
-            }}
-          >
-            {doubleCapabilities.map((capability, index) => (
-              <motion.div
-                key={index}
-                className="relative flex-shrink-0 bg-gradient-to-b from-[rgba(196,227,255,0.12)] to-[rgba(196,227,255,0.02)] bg-black rounded-[20px] border border-[rgba(255,255,255,0.12)] p-6 md:p-8 w-[240px] md:w-[260px] h-[280px] md:h-[320px] flex flex-col items-start gap-4 md:gap-6"
-                variants={itemVariants}
-              >
-                {/* Badge */}
-                <div className={`absolute top-3 right-3 ${capability.badgeColor} text-white text-xs font-bold px-2 py-1 rounded-full`}>
-                  {capability.badge}
-                </div>
+        {/* Enhanced Carousel Section with Navigation */}
+        <div className="w-full relative">
+          {/* Navigation Arrows */}
+          <div className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10">
+            <motion.button
+              onClick={goToPrev}
+              className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 hover:border-white/40 transition-all duration-300 shadow-lg"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </motion.button>
+          </div>
 
-                <div className="flex flex-col items-center gap-3 w-full">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
-                    <capability.icon className="w-6 h-6 text-white" />
+          <div className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10">
+            <motion.button
+              onClick={goToNext}
+              className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 hover:border-white/40 transition-all duration-300 shadow-lg"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <ChevronRight className="w-6 h-6" />
+            </motion.button>
+          </div>
+
+          {/* Carousel Container */}
+          <div
+            className="w-full overflow-hidden"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            <motion.div
+              ref={carouselRef}
+              className="flex gap-6 md:gap-8"
+              initial={{ x: '0%' }}
+              animate={{
+                x: isHovered ? `${-currentIndex * (260 + 32)}px` : '-50%'
+              }}
+              transition={{
+                duration: isHovered ? 0.5 : 20,
+                ease: isHovered ? 'easeInOut' : 'linear',
+                repeat: isHovered ? 0 : Infinity,
+              }}
+            >
+              {doubleCapabilities.map((capability, index) => (
+                <motion.div
+                  key={index}
+                  className="relative flex-shrink-0 bg-gradient-to-b from-[rgba(196,227,255,0.12)] to-[rgba(196,227,255,0.02)] bg-black rounded-[20px] border border-[rgba(255,255,255,0.12)] p-6 md:p-8 w-[240px] md:w-[260px] h-[280px] md:h-[320px] flex flex-col items-start gap-4 md:gap-6 hover:border-white/30 transition-all duration-300 cursor-pointer"
+                  variants={itemVariants}
+                  whileHover={{
+                    scale: 1.05,
+                    y: -5,
+                    boxShadow: "0 20px 40px rgba(0,0,0,0.3)"
+                  }}
+                >
+                  {/* Badge */}
+                  <div className={`absolute top-3 right-3 ${capability.badgeColor} text-white text-xs font-bold px-2 py-1 rounded-full`}>
+                    {capability.badge}
                   </div>
-                  <div className="text-white text-lg md:text-xl font-semibold leading-6 font-sans text-center">{capability.title}</div>
-                </div>
-                <div className="text-gray-200 text-sm font-normal leading-5 font-sans text-center flex-1 flex items-center">
-                  {capability.description}
-                </div>
-              </motion.div>
+
+                  <div className="flex flex-col items-center gap-3 w-full">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
+                      <capability.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="text-white text-lg md:text-xl font-semibold leading-6 font-sans text-center">{capability.title}</div>
+                  </div>
+                  <div className="text-gray-200 text-sm font-normal leading-5 font-sans text-center flex-1 flex items-center">
+                    {capability.description}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Carousel Indicators */}
+          <div className="flex justify-center mt-8 gap-2">
+            {capabilities.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === currentIndex
+                    ? 'bg-white w-8'
+                    : 'bg-white/30 hover:bg-white/50'
+                }`}
+              />
             ))}
-          </motion.div>
+          </div>
         </div>
 
         {/* CTA Section */}
