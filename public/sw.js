@@ -26,6 +26,16 @@ const CACHE_STRATEGIES = {
   external: /^https:\/\/(?:fonts\.googleapis\.com|fonts\.gstatic\.com|cal\.com|tally\.so)/
 };
 
+// External cache patterns for shouldCacheExternal function
+const CACHE_PATTERNS = [
+  /^https:\/\/fonts\.googleapis\.com/,
+  /^https:\/\/fonts\.gstatic\.com/,
+  /^https:\/\/cal\.com/,
+  /^https:\/\/tally\.so/,
+  /^https:\/\/cdn\./,
+  /\.(?:woff|woff2|ttf|eot|css)$/
+];
+
 // Cache durations (in seconds)
 const CACHE_DURATIONS = {
   static: 31536000, // 1 year

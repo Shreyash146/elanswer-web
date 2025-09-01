@@ -168,6 +168,11 @@ export class SecurityMonitor {
   }
 
   private async reportViolation(violation: any): Promise<void> {
+    // Only report violations in production environment
+    if (process.env.NODE_ENV !== 'production') {
+      return;
+    }
+
     try {
       // Send to your security monitoring service
       await fetch('/api/security/violations', {
@@ -178,7 +183,12 @@ export class SecurityMonitor {
         body: JSON.stringify(violation)
       });
     } catch (error) {
-      console.warn('Failed to report security violation:', error);
+      // Silently fail in development to avoid console spam
+      if (process.env.NODE_ENV === 'development') {
+        console.debug('Security API not available in development');
+      } else {
+        console.warn('Failed to report security violation:', error);
+      }
     }
   }
 
@@ -236,12 +246,14 @@ export const detectSuspiciousActivity = () => {
 export const initializeSecurity = () => {
   // Enforce HTTPS
   enforceHTTPS();
-  
+
   // Setup CSP violation reporting
   setupCSPViolationReporting();
-  
-  // Detect suspicious activity
-  detectSuspiciousActivity();
+
+  // Only detect suspicious activity in production to reduce development console noise
+  if (process.env.NODE_ENV === 'production') {
+    detectSuspiciousActivity();
+  }
   
   // Cleanup rate limiter periodically
   setInterval(() => {

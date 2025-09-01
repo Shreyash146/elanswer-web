@@ -26,16 +26,37 @@ const PerformanceDashboard: React.FC = () => {
         // Get navigation timing
         const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
         
-        // Get Core Web Vitals
-        const { getCLS, getFID, getFCP, getLCP, getTTFB } = await import('web-vitals');
-        
+        // Get Core Web Vitals with error handling
         const webVitals: Partial<PerformanceMetrics> = {};
-        
-        getCLS((metric) => { webVitals.cls = metric.value; });
-        getFID((metric) => { webVitals.fid = metric.value; });
-        getFCP((metric) => { webVitals.fcp = metric.value; });
-        getLCP((metric) => { webVitals.lcp = metric.value; });
-        getTTFB((metric) => { webVitals.ttfb = metric.value; });
+
+        try {
+          const webVitalsModule = await import('web-vitals');
+          const { getCLS, getFID, getFCP, getLCP, getTTFB } = webVitalsModule;
+
+          if (getCLS && typeof getCLS === 'function') {
+            getCLS((metric) => { webVitals.cls = metric.value; });
+          }
+          if (getFID && typeof getFID === 'function') {
+            getFID((metric) => { webVitals.fid = metric.value; });
+          }
+          if (getFCP && typeof getFCP === 'function') {
+            getFCP((metric) => { webVitals.fcp = metric.value; });
+          }
+          if (getLCP && typeof getLCP === 'function') {
+            getLCP((metric) => { webVitals.lcp = metric.value; });
+          }
+          if (getTTFB && typeof getTTFB === 'function') {
+            getTTFB((metric) => { webVitals.ttfb = metric.value; });
+          }
+        } catch (webVitalsError) {
+          console.warn('Web Vitals library not available:', webVitalsError);
+          // Set default values
+          webVitals.cls = 0;
+          webVitals.fid = 0;
+          webVitals.fcp = 0;
+          webVitals.lcp = 0;
+          webVitals.ttfb = 0;
+        }
 
         // Calculate additional metrics
         const loadTime = navigation.loadEventEnd - navigation.navigationStart;

@@ -130,14 +130,15 @@ const CoreWebVitalsOptimizer = () => {
     // Monitor Core Web Vitals
     const monitorWebVitals = async () => {
       try {
-        const { getCLS, getFID, getFCP, getLCP, getTTFB } = await import('web-vitals');
-        
+        const webVitalsModule = await import('web-vitals');
+        const { getCLS, getFID, getFCP, getLCP, getTTFB } = webVitalsModule;
+
         const sendToAnalytics = (metric: any) => {
           // In production, send to your analytics service
           if (process.env.NODE_ENV === 'development') {
             console.log('Core Web Vital:', metric);
           }
-          
+
           // Example: Send to Google Analytics
           // gtag('event', metric.name, {
           //   value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
@@ -147,11 +148,21 @@ const CoreWebVitalsOptimizer = () => {
           // });
         };
 
-        getCLS(sendToAnalytics);
-        getFID(sendToAnalytics);
-        getFCP(sendToAnalytics);
-        getLCP(sendToAnalytics);
-        getTTFB(sendToAnalytics);
+        if (getCLS && typeof getCLS === 'function') {
+          getCLS(sendToAnalytics);
+        }
+        if (getFID && typeof getFID === 'function') {
+          getFID(sendToAnalytics);
+        }
+        if (getFCP && typeof getFCP === 'function') {
+          getFCP(sendToAnalytics);
+        }
+        if (getLCP && typeof getLCP === 'function') {
+          getLCP(sendToAnalytics);
+        }
+        if (getTTFB && typeof getTTFB === 'function') {
+          getTTFB(sendToAnalytics);
+        }
       } catch (error) {
         console.warn('Web Vitals monitoring failed:', error);
       }
